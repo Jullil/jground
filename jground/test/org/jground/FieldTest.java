@@ -13,6 +13,7 @@ public final class FieldTest {
         field = new Field(N);
     }
 
+    @Test
     public void testLessThenN() {
         for (int i = 0; i < N; i++) {
             double value = field.getType((int) Math.pow(2, i), (int) Math.pow(3, i));
