@@ -7,6 +7,9 @@ public class UserRuntimeDao implements UserDao {
 
     @Override
     public boolean addUser(String name, String login, String password) {
+        if (this.getUser(login) != null) {
+            return false;
+        }
         User user = new User(name, login, password);
         return userList.add(user);
     }

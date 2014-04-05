@@ -2,7 +2,7 @@ package org.jground;
 
 public class UserService {
     private final static UserService INSTANCE = new UserService();
-    private final UserDao dao = new UserRuntimeDao();
+    private UserDao dao = new UserRuntimeDao();
 
     private UserService() {}
 
@@ -16,9 +16,17 @@ public class UserService {
 
     public boolean login(String login, String password) {
         User user = dao.getUser(login);
-        if (user.getPassword() == password) {
+        if (user != null && user.getPassword().equals(password)) {
             return true;
         }
         return false;
+    }
+
+    void setDao(UserDao dao) {
+        this.dao = dao;
+    }
+
+    UserDao getDao() {
+        return dao;
     }
 }
