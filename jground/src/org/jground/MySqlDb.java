@@ -14,22 +14,23 @@ class MySqlDb extends Db {
     public static Db create() {
         Connection connection = null;
         try {
-            Class.forName("org.mysql5.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
             connection = DriverManager.getConnection(url, name, password);
 
             return new MySqlDb(connection);
         } catch (Exception ex) {
-            logger.error(ex.getMessage());
-        } finally {
+            logger.error(ex.getMessage(), ex);
+
             if (connection != null) {
                 try {
                     connection.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
+                } catch (SQLException e) {
+                    logger.error(ex.getMessage(), e);
                 }
             }
         }
+
         return null;
     }
 }

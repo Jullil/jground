@@ -2,6 +2,7 @@ package org.jground;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDatabaseDao implements UserDao {
@@ -18,13 +19,23 @@ public class UserDatabaseDao implements UserDao {
 
             return true;
         } catch (SQLException ex) {
-            Db.logger.error(ex.getMessage());
+            Db.logger.error(ex.getMessage(), ex);
         }
         return false;
     }
 
     @Override
     public User getUser(String login) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM user WHERE login=?");
+            statement.setString(1, login);
+            ResultSet result = statement.executeQuery();
+            result.next();
+
+            return new User(result.getString("name"), result.getString("login"), result.getString("password"));
+        } catch (SQLException ex) {
+            Db.logger.error(ex.getMessage(), ex);
+        }
         return null;
     }
 

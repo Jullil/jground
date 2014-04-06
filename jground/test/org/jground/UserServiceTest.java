@@ -3,6 +3,8 @@ package org.jground;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.Date;
+
 public final class UserServiceTest {
     @Test
      public void testRegister() {
@@ -20,7 +22,7 @@ public final class UserServiceTest {
 
     @Test
     public void testLogin() {
-        final String login = "test2";
+        final String login = "test33";
         final String password = "12345233333";
         UserService.getInstance().register("Test User2", login, password);
         final boolean loginResult = UserService.getInstance().login(login, password);
@@ -43,11 +45,17 @@ public final class UserServiceTest {
     }
 
     @Test
-    public void testRegisterUsingDatabaseDao() {
+    public void testRegisterAndLoginUsingDatabaseDao() {
+        final String login = "test" + (new Date()).getTime();
+        final String password = "12345233333sdsd";
+
         UserService.getInstance().setDao(new UserDatabaseDao());
         Assert.assertTrue(UserService.getInstance().getDao() instanceof UserDatabaseDao);
 
-        boolean result = UserService.getInstance().register("Test User222", "test23", "12345");
+        boolean result = UserService.getInstance().register("Test User222", login, password);
         Assert.assertTrue(result);
+
+        final boolean loginResult = UserService.getInstance().login(login, password);
+        Assert.assertTrue(loginResult);
     }
 }
