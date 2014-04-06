@@ -5,8 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public final class FieldTest {
-    private Field field;
+
     private final static int N = 100;
+
+    private Field field;
 
     @Before
     public void init() {

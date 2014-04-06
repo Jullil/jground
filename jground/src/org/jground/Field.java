@@ -2,12 +2,8 @@ package org.jground;
 
 import java.util.Random;
 
-public class Field {
-    private int n;
-
-    private int x, y;
-
-
+public final class Field {
+    private final int n;
 
     public Field(int n) {
         this.n = n;

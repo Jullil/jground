@@ -20,6 +20,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.mysql.jdbc:com.springsource.com.mysql.jdbc:5.1.6" level="project" />
+    <orderEntry type="library" name="org.hibernate:hibernate-core:4.1.9.Final" level="project" />
   </component>
 </module>
 

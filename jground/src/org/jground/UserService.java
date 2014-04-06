@@ -15,11 +15,8 @@ public class UserService {
     }
 
     public boolean login(String login, String password) {
-        User user = dao.getUser(login);
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
-        }
-        return false;
+        final User user = dao.getUser(login);
+        return user != null && user.getPassword().equals(password);
     }
 
     void setDao(UserDao dao) {
