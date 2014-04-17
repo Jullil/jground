@@ -52,7 +52,22 @@ public final class UserServiceTest {
         UserService.getInstance().setDao(new UserDatabaseDao());
         Assert.assertTrue(UserService.getInstance().getDao() instanceof UserDatabaseDao);
 
-        boolean result = UserService.getInstance().register("Test User222", login, password);
+        boolean result = UserService.getInstance().register("JDBC Test User222", login, password);
+        Assert.assertTrue(result);
+
+        final boolean loginResult = UserService.getInstance().login(login, password);
+        Assert.assertTrue(loginResult);
+    }
+
+    @Test
+    public void testRegisterAndLoginUsingOrmDao() {
+        final String login = "test" + (new Date()).getTime();
+        final String password = "12345233333sdsd44";
+
+        UserService.getInstance().setDao(new UserOrmDao());
+        Assert.assertTrue(UserService.getInstance().getDao() instanceof UserOrmDao);
+
+        boolean result = UserService.getInstance().register("Hibernate Test User22244", login, password);
         Assert.assertTrue(result);
 
         final boolean loginResult = UserService.getInstance().login(login, password);

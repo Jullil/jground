@@ -2,8 +2,9 @@ package org.jground;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.jground.util.Hibernate;
-import org.jground.orm.User;
+import org.jground.entity.User;
 
 public class UserOrmDao implements UserDao {
     protected static final Logger logger = Logger.getRootLogger();
@@ -35,7 +36,7 @@ public class UserOrmDao implements UserDao {
         User user = null;
         try {
             session = Hibernate.getSessionFactory().openSession();
-            user = (User) session.load(User.class, login);
+            user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {

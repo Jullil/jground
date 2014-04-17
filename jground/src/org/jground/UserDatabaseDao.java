@@ -1,5 +1,7 @@
 package org.jground;
 
+import org.jground.entity.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

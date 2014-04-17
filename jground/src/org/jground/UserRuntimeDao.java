@@ -1,5 +1,7 @@
 package org.jground;
 
+import org.jground.entity.User;
+
 import java.util.ArrayList;
 
 public class UserRuntimeDao implements UserDao {

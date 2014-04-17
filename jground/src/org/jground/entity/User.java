@@ -1,4 +1,4 @@
-package org.jground.orm;
+package org.jground.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -7,10 +7,24 @@ import javax.persistence.*;
 @Entity
 @Table(name="user")
 public class User {
-    private Long id;
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name="id")
+    private int id;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="login")
     private String login;
+
+    @Column(name="password")
     private String password;
+
+    public User() {
+
+    }
 
     public User(String name, String login, String password) {
         this.name = name;
@@ -18,19 +32,14 @@ public class User {
         this.password = password;
     }
 
-    @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name="id")
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -39,7 +48,6 @@ public class User {
         this.name = name;
     }
 
-    @Column(name="login")
     public String getLogin() {
         return login;
     }
@@ -48,7 +56,6 @@ public class User {
         this.login = login;
     }
 
-    @Column(name="password")
     public String getPassword() {
         return password;
     }

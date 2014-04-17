@@ -1,5 +1,7 @@
 package org.jground;
 
+import org.jground.entity.User;
+
 public class UserService {
     private final static UserService INSTANCE = new UserService();
     private UserDao dao = new UserRuntimeDao();
